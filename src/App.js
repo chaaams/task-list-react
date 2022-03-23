@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Task from './Components/Task';
+import TaskList from './Components/TaskList';
+import { createContext, useState } from 'react';
+
+ export const newContexte = createContext({})
 
 function App() {
+  
+  const [state, setState] = useState([
+  { id: 1, title: 'Tache 01', priority: 'Important'},        
+  { id: 2, title: 'Tache 02', priority: 'Urgent'}   
+]);
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <newContexte.Provider value={{state, setState}} >
+        <div className="App">
+          <Task/>
+          <TaskList/>
+        </div>
+      </newContexte.Provider>
+    
   );
 }
 
-export default App;
+export default App ;
